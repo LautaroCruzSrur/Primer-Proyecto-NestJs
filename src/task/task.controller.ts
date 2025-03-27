@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Patch, Post, Put } from "@nestjs/common";
+import { Controller, Delete, Get, Patch, Post, Put, Body, Query } from "@nestjs/common";
 import { TaskService } from "./task.service";
 
 @Controller('/tasks')
@@ -11,13 +11,14 @@ export class TaskController{
     }
 
     @Get()
-    getAllTask(){
+    getAllTask(@Query() query:any){
+        console.log(query);
        return this.tasksService.getTasks();
     }
 
     @Post()
-    createTask(){
-        return this.tasksService.createTask();
+    createTask(@Body() task:any){
+        return this.tasksService.createTask(task);
     }
 
     @Put()
