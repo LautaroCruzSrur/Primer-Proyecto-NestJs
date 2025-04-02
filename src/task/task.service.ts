@@ -10,11 +10,14 @@ export class TaskService{
 
     private tasks : any = [];
 
-    getTasks(): User{
+    getTasks(){
         return this.tasks;
     }
+    getTask(id: number){
+        return this.tasks.find(task => task.id === id);
+    }
 
-    createTask(task : any){
+    createTask(task : CreateTaskDto){
         console.log(task);
         this.tasks.push({
             ...task,
@@ -22,7 +25,8 @@ export class TaskService{
         });
         return task;
     }
-    updateTask(){
+    updateTask(task: UpdateTaskDto){
+        console.log(task);
         return 'Acutalizando Tareas';
     }
     deleteTask(){
