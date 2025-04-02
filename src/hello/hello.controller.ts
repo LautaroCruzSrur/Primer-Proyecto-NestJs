@@ -1,6 +1,6 @@
 import { Controller, Get, Res, Req, HttpCode, Param, ParseIntPipe, ParseBoolPipe, Query, UseGuards } from '@nestjs/common';
 import { query, Request, Response } from 'express';
-import { ValidateuserPipe } from './pipes/validateuser/validateuser.pipe';
+import { ValidateuserPipe } from './pipres/validateuser/validateuser.pipe';
 import { AuthGuard } from './guards/auth/auth.guard';
 
 @Controller()
@@ -32,6 +32,7 @@ export class HelloController {
     }
 
     @Get('ticket/:num')
+    @UseGuards(AuthGuard)
     getNumber(@Param('num', ParseIntPipe) num: number){
         return num + 14;
     }
